@@ -1,0 +1,79 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue (or any color you want) */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.comic-title, .comic-subtitle, .comic-image {
+  opacity: 0; /* Hidden by default */
+  animation-name: fadeIn;
+  animation-timing-function: ease-in;
+  animation-duration: 1s; /* Change duration if needed */
+  animation-fill-mode: forwards; /* This ensures the animation's end values (from the 'to' keyframe) persist after the animation completes */
+
+}
+
+.App {
+  background-color: black;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.comic-title {
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+  font-size: 2em;
+  min-height: 5vh;
+  animation-delay: 0.5s; /* Starts fading in after 0.5s */
+}
+
+.viewer-container {
+  width: fit-content;
+  margin: 0 auto;
+  height: 90vh;  /* Adjusted height, reserving some space for the title */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  /* Added for horizontal centering */
+}
+
+.comic-subtitle {
+  text-align: left;
+  color: white;
+  font-size: 1.2em;
+  padding-right: 10px;
+  width: 100%; 
+  flex-shrink: 0; 
+  margin: 10;  /* This removes any default margins */
+  line-height: 1.1;  /* Adjust this to control the space around the text */
+  animation-delay: 1s; /* Starts fading in after 1s */
+}
+
+.comic-image {
+  max-width: 90vw;
+  max-height: calc(90% - 1.2em);
+  margin-top: 5px;  /* Adjust this if needed */
+  animation-delay: 1.5s; /* Starts fading in after 1.5s */
+}
