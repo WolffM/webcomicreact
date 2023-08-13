@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/webcomicreact/static/css/main.bfd5cc86.css",
-    "main.js": "/webcomicreact/static/js/main.7d180bbc.js",
+    "main.js": "/webcomicreact/static/js/main.81dc6e44.js",
     "static/js/787.ee3c2dba.chunk.js": "/webcomicreact/static/js/787.ee3c2dba.chunk.js",
     "index.html": "/webcomicreact/index.html",
     "main.bfd5cc86.css.map": "/webcomicreact/static/css/main.bfd5cc86.css.map",
-    "main.7d180bbc.js.map": "/webcomicreact/static/js/main.7d180bbc.js.map",
+    "main.81dc6e44.js.map": "/webcomicreact/static/js/main.81dc6e44.js.map",
     "787.ee3c2dba.chunk.js.map": "/webcomicreact/static/js/787.ee3c2dba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bfd5cc86.css",
-    "static/js/main.7d180bbc.js"
+    "static/js/main.81dc6e44.js"
   ]
 }
