@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Web Comic React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A basic single page react app for hosting webcomics.
+Public version hosted here: https://wolffm.github.io/webcomicreact/
 
 ## Available Scripts
 
