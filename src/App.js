@@ -15,7 +15,7 @@ function App() {
       let index = 1;
 
       while (mounted) {
-        const imagePath = `./assets/${index}.png`;
+        const imagePath = process.env.PUBLIC_URL + '/assets/' + `${index}` + '.png';
 
         try {
           const response = await fetch(imagePath);
