@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Navbar from './Navbar';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -79,6 +80,7 @@ function App() {
       ) : (
         <>
           <h1 className="comic-title">Checkmate Productions</h1>
+          <Navbar images={images} setCurrentImageIndex={setCurrentImageIndex} currentImageIndex={currentImageIndex}/>
           <div className="viewer-container">
             <h2 className="comic-subtitle" key={subtitle}>{subtitle}</h2>
             <img
