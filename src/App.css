@@ -77,3 +77,14 @@
   margin-top: 5px;  /* Adjust this if needed */
   animation-delay: 1.5s; /* Starts fading in after 1.5s */
 }
+
+.Navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.navButton {
+  width: 10em;
+  height: 3em;
+  margin: 1em;
+}
