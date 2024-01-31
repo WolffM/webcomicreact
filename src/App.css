@@ -25,7 +25,7 @@
   transform: translate(-50%, -50%);
 }
 
-.comic-title, .comic-subtitle, .comic-image {
+.comic-title, .comic-subtitle, .comic-image, .buttons-container {
   opacity: 0; /* Hidden by default */
   animation-name: fadeIn;
   animation-timing-function: ease-in;
@@ -54,12 +54,14 @@
   margin: 0 auto;
   height: 90vh;  /* Adjusted height, reserving some space for the title */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;  /* Added for horizontal centering */
 }
 
 .comic-subtitle {
+  display: flex; 
+  justify-content: center;
   text-align: left;
   color: white;
   font-size: 1.2em;
@@ -73,18 +75,25 @@
 
 .comic-image {
   max-width: 90vw;
-  max-height: calc(90% - 1.2em);
-  margin-top: 5px;  /* Adjust this if needed */
+  max-height: calc(90% - 1.2em);  
   animation-delay: 1.5s; /* Starts fading in after 1.5s */
 }
 
-.Navbar {
+.buttons-container {
   display: flex;
   justify-content: center;
-}
+  align-items: center;
+  padding: 5%;
+  animation-delay: 1.5s;
+ }
 
-.navButton {
-  width: 10em;
-  height: 3em;
-  margin: 1em;
-}
+ @media (max-width: 480px) {
+  .viewer-container {
+     flex-direction: column;
+     align-items: center;
+     height: 70%;
+  }
+  .buttons-container {
+    padding: 5%;
+  }
+ }
