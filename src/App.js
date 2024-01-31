@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from './Navbar';
+import { IconButton } from '@chakra-ui/react';
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -73,6 +74,19 @@ function App() {
     };
   }, [images.length, currentImageIndex]);
 
+  // Handles clicks for "Previous" and "Next" buttons
+  const handlePreviousClick = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex((prevIndex) => prevIndex - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentImageIndex < images.length - 1) {
+      setCurrentImageIndex((prevIndex) => prevIndex + 1);
+    }
+  };
+
   return (
     <div className="App">
       {loading ? (
@@ -80,14 +94,20 @@ function App() {
       ) : (
         <>
           <h1 className="comic-title">Checkmate Productions</h1>
-          <Navbar images={images} setCurrentImageIndex={setCurrentImageIndex} currentImageIndex={currentImageIndex}/>
+          <h2 className="comic-subtitle" key={subtitle}>{subtitle}</h2>
           <div className="viewer-container">
-            <h2 className="comic-subtitle" key={subtitle}>{subtitle}</h2>
+            <div className="buttons-container">
+              <IconButton isRound={true} variant="solid" colorScheme="teal" size="lg" aria-label="Previous Image" icon={<ArrowBackIcon/>} onClick={handlePreviousClick}/>
+            </div>
             <img
               src={images[currentImageIndex]}
               alt="Webcomic Page"
               className="comic-image"
             />
+            <br />
+            <div className="buttons-container">
+              <IconButton isRound={true} variant="solid" colorScheme="teal" size="lg" aria-label="Next Image" icon={<ArrowForwardIcon/>} onClick={handleNextClick}/>
+            </div>
           </div>
         </>
       )}
