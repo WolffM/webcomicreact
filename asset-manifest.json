@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/webcomicreact/src/static/css/main.54a40cb2.css",
-    "main.js": "/webcomicreact/src/static/js/main.beaa53ff.js",
+    "main.css": "/webcomicreact/src/static/css/main.1cb2706a.css",
+    "main.js": "/webcomicreact/src/static/js/main.f64c595a.js",
     "static/js/787.e1df6df6.chunk.js": "/webcomicreact/src/static/js/787.e1df6df6.chunk.js",
     "index.html": "/webcomicreact/src/index.html",
-    "main.54a40cb2.css.map": "/webcomicreact/src/static/css/main.54a40cb2.css.map",
-    "main.beaa53ff.js.map": "/webcomicreact/src/static/js/main.beaa53ff.js.map",
+    "main.1cb2706a.css.map": "/webcomicreact/src/static/css/main.1cb2706a.css.map",
+    "main.f64c595a.js.map": "/webcomicreact/src/static/js/main.f64c595a.js.map",
     "787.e1df6df6.chunk.js.map": "/webcomicreact/src/static/js/787.e1df6df6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.54a40cb2.css",
-    "static/js/main.beaa53ff.js"
+    "static/css/main.1cb2706a.css",
+    "static/js/main.f64c595a.js"
   ]
 }
