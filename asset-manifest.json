@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/webcomicreact/src/static/css/main.1cb2706a.css",
-    "main.js": "/webcomicreact/src/static/js/main.f64c595a.js",
-    "static/js/787.e1df6df6.chunk.js": "/webcomicreact/src/static/js/787.e1df6df6.chunk.js",
-    "index.html": "/webcomicreact/src/index.html",
-    "main.1cb2706a.css.map": "/webcomicreact/src/static/css/main.1cb2706a.css.map",
-    "main.f64c595a.js.map": "/webcomicreact/src/static/js/main.f64c595a.js.map",
-    "787.e1df6df6.chunk.js.map": "/webcomicreact/src/static/js/787.e1df6df6.chunk.js.map"
+    "main.css": "/webcomicreact/static/css/main.1cb2706a.css",
+    "main.js": "/webcomicreact/static/js/main.7966b8b9.js",
+    "static/js/787.e1df6df6.chunk.js": "/webcomicreact/static/js/787.e1df6df6.chunk.js",
+    "index.html": "/webcomicreact/index.html",
+    "main.1cb2706a.css.map": "/webcomicreact/static/css/main.1cb2706a.css.map",
+    "main.7966b8b9.js.map": "/webcomicreact/static/js/main.7966b8b9.js.map",
+    "787.e1df6df6.chunk.js.map": "/webcomicreact/static/js/787.e1df6df6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1cb2706a.css",
-    "static/js/main.f64c595a.js"
+    "static/js/main.7966b8b9.js"
   ]
 }
