@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { IconButton } from '@chakra-ui/react';
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -96,18 +94,14 @@ function App() {
           <h1 className="comic-title">Checkmate Productions</h1>
           <h2 className="comic-subtitle" key={subtitle}>{subtitle}</h2>
           <div className="viewer-container">
-            <div className="buttons-container">
-              <IconButton isRound={true} variant="solid" colorScheme="teal" size="lg" aria-label="Previous Image" icon={<ArrowBackIcon/>} onClick={handlePreviousClick}/>
-            </div>
+            <div className="prev-button-container" onClick={handlePreviousClick}></div>
             <img
               src={images[currentImageIndex]}
               alt="Webcomic Page"
               className="comic-image"
             />
             <br />
-            <div className="buttons-container">
-              <IconButton isRound={true} variant="solid" colorScheme="teal" size="lg" aria-label="Next Image" icon={<ArrowForwardIcon/>} onClick={handleNextClick}/>
-            </div>
+            <div className="next-button-container" onClick={handleNextClick}></div>
           </div>
         </>
       )}
