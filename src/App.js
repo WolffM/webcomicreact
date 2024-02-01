@@ -88,7 +88,9 @@ function App() {
   return (
     <div className="App">
       {loading ? (
-        <div className="spinner"></div>
+        <div className="spinner-wrapper">
+          <div className="spinner"></div>
+        </div>
       ) : (
         <>
           <h1 className="comic-title">Checkmate Productions</h1>
