@@ -1,52 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Navbar from './layout/Navbar.js';
 
 function App() {
   const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [subtitle, setSubtitle] = useState("Chapter 1");
+  const [selectedChapter, setSelectedChapter] = useState('Chapter 1');
 
   useEffect(() => {
+    setCurrentImageIndex(0);
     let mounted = true;
-    let imgList = [];
-
-    const loadImages = async () => {
-      let index = 1;
-
+    
+    const loadImages = async (selectedChapter) => {
+      let index =  1;
+      let imgList = [];
+    
       while (mounted) {
-        const imagePath = `${process.env.PUBLIC_URL}/assets/${index}.png`;
-
+        const imagePath = `${process.env.PUBLIC_URL}/assets/${selectedChapter}/${index}.png`;
+        
+    
         try {
           const response = await fetch(imagePath);
-
-          // Check if response is an image type
           const contentType = response.headers.get("Content-Type");
-          if (!response.ok || !contentType || !contentType.startsWith("image")) {
-            // If it's not an image or response not OK, break the loop
+          // Stop fetching if the image does not exist or is not an image file
+          if (!response.ok || !contentType || !contentType.startsWith("image") || response.status ===  404) {
+            console.log(`Failed to fetch image at path: ${imagePath}`);
             break;
           } else {
             imgList.push(imagePath);
             index++;
           }
         } catch (error) {
-          // Any fetch error means we break out of the loop
+          console.error(`Error fetching image at path: ${imagePath}`, error);
           break;
         }
       }
-
+    
       if (mounted) {
         setImages(imgList);
         setLoading(false);
       }
     };
 
-    loadImages();
+    loadImages(selectedChapter);
 
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [selectedChapter]);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -58,9 +60,6 @@ function App() {
       // Right arrow key
       else if (event.keyCode === 39 && currentImageIndex < images.length - 1) {
         setCurrentImageIndex((prevIndex) => prevIndex + 1);
-        if (currentImageIndex === 16) {
-          setSubtitle('AI Annihilation Arena: Chapter 1');
-        }
       }
     };
 
@@ -70,7 +69,7 @@ function App() {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [images.length, currentImageIndex]);
+  }, [images, currentImageIndex]);
 
   // Handles clicks for "Previous" and "Next" buttons
   const handlePreviousClick = () => {
@@ -86,7 +85,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" key={selectedChapter}>
       {loading ? (
         <div className="spinner-wrapper">
           <div className="spinner"></div>
@@ -94,7 +93,8 @@ function App() {
       ) : (
         <>
           <h1 className="comic-title">Checkmate Productions</h1>
-          <h2 className="comic-subtitle" key={subtitle}>{subtitle}</h2>
+          <Navbar setSelectedChapter={setSelectedChapter} />
+          <h2 className="comic-subtitle" key={selectedChapter}>{selectedChapter}</h2>
           <div className="viewer-container">
             <div className="prev-button-container" onClick={handlePreviousClick}></div>
             <img
