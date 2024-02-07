@@ -39,13 +39,18 @@ export default function Navbar({ setSelectedChapter }) {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
+        sx={{ borderRadius: 80 }}
         onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
           sx: {
-            bgcolor: 'rgba(0,  0,  0,  1)',
+            bgcolor: 'rgba(75, 0, 130)',
             '.MuiMenuItem-root': {
               color: 'white',
+              '&:hover': {
+                backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+                transform: 'scale(1.05)',
+              }
             },
           },
         }}
