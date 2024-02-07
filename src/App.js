@@ -95,7 +95,7 @@ function App() {
           <h1 className="comic-title">Checkmate Productions</h1>
           <Navbar setSelectedChapter={setSelectedChapter} />
           <h2 className="comic-subtitle" key={selectedChapter}>{selectedChapter}</h2>
-          <div className="viewer-container">
+          
             <div className="prev-button-container" onClick={handlePreviousClick}></div>
             <img
               src={images[currentImageIndex]}
@@ -104,7 +104,7 @@ function App() {
             />
             <br />
             <div className="next-button-container" onClick={handleNextClick}></div>
-          </div>
+          
         </>
       )}
     </div>

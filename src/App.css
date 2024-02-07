@@ -34,12 +34,11 @@
   animation-timing-function: ease-in;
   animation-duration: 1s; /* Change duration if needed */
   animation-fill-mode: forwards; /* This ensures the animation's end values (from the 'to' keyframe) persist after the animation completes */
-
 }
 
 .App {
   background-color: black;
-  height: 100vh;
+  height: 90vh;
   overflow: hidden;
 }
 
@@ -52,15 +51,6 @@
   animation-delay: 0.5s; /* Starts fading in after 0.5s */
 }
 
-.viewer-container {
-  width: fit-content;
-  margin: 0 auto;
-  height: 90%;  /* Adjusted height, reserving some space for the title */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;  /* Added for horizontal centering */
-}
 .nav-buttons-container {
   display: flex;
   justify-content: center;
@@ -82,8 +72,14 @@
 }
 
 .comic-image {
-  max-width: 90vw;
-  max-height: calc(90% - 1.2em);  
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;  /* Added for horizontal centering */
   animation-delay: 1.5s; /* Starts fading in after 1.5s */
 }
 
@@ -92,11 +88,8 @@
   top: 0;
   left: 0;
   display: flex;
-  height: 80vh;
-  width: 30vw;
-  justify-content: center;
-  align-items: center;
-  padding: 5%;
+  height: 100vh;
+  width: 40vw; 
   animation-delay: 1.5s;
   z-index: 10;
  }
@@ -106,22 +99,8 @@
   top: 0;
   right: 0;
   display: flex; 
-  height: 80vh;
-  width: 30vw;
-  justify-content: center;
-  align-items: center;
-  padding: 5%;
+  height: 100vh;
+  width: 40vw; 
   animation-delay: 1.5s;
   z-index: 10;
- }
-
- @media (max-width: 480px) {
-  .viewer-container {
-    height: 50%;
-    width: 80vw;
-  }
-
-  .prev-button-container, .next-button-container{
-    z-index: 10;
-  }
  }
