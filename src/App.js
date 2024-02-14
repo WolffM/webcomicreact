@@ -6,7 +6,7 @@ function App() {
   const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectedChapter, setSelectedChapter] = useState('Chapter 1');
+  const [selectedChapter, setSelectedChapter] = useState('Chapter 2');
 
   useEffect(() => {
     setCurrentImageIndex(0);
