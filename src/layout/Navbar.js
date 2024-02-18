@@ -1,16 +1,12 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 
+import './Navbar.css'; 
 
-export default function Navbar({ setSelectedChapter }) {
-
-  const handleMenuClick = (chapter) => {
-    handleClose();
-    setSelectedChapter(chapter);
-  };
-
+export default function Navbar() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -26,37 +22,19 @@ export default function Navbar({ setSelectedChapter }) {
         variant="outlined"
         size="large"
         color="secondary"
-        id="basic-button"
-        sx={{ borderRadius: 50 }}
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        MENU
+        Story
       </Button>
       <Menu
-        id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        sx={{ borderRadius: 80 }}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-          sx: {
-            bgcolor: 'rgba(75, 0, 130)',
-            '.MuiMenuItem-root': {
-              color: 'white',
-              '&:hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.8)', 
-                transform: 'scale(1.05)',
-              }
-            },
-          },
-        }}
       >
-        <MenuItem onClick={() => handleMenuClick('Chapter 1')}>Chapter 1</MenuItem>
-        <MenuItem onClick={() => handleMenuClick('Chapter 2')}>Chapter 2</MenuItem>
+        <div className="menuContent">
+          <Button className="menuItem" onClick={() => navigate('/AI-Arena')}>AI-Arena</Button>
+          <Button className="menuItem" onClick={() => navigate('/Misc')}>Misc</Button>
+        </div>
       </Menu>
     </div>
   );

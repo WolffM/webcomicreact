@@ -1,59 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Navbar from './layout/Navbar.js';
 
-function App() {
-  const [images, setImages] = useState([]);
+const storyList = ['AI-Arena', 'Misc'];
+const MAX_IMAGES = 30;
+const defaultNav = storyList[0];
+
+function DynamicRouteComponent() {
+  const location = useLocation();
+  const story = location.pathname.split('/')[1]; // Extract story from pathname
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedChapter, setSelectedChapter] = useState('Chapter 2');
 
-  useEffect(() => {
-    setCurrentImageIndex(0);
-    let mounted = true;
-    
-    const loadImages = async (selectedChapter) => {
-      let index =  1;
-      let imgList = [];
-    
-      while (mounted) {
-        const imagePath = `${process.env.PUBLIC_URL}/assets/${selectedChapter}/${index}.png`;
-        
-    
-        try {
-          const response = await fetch(imagePath);
-          const contentType = response.headers.get("Content-Type");
-          // Stop fetching if the image does not exist or is not an image file
-          if (!response.ok || !contentType || !contentType.startsWith("image") || response.status ===  404) {
-            console.log(`Failed to fetch image at path: ${imagePath}`);
-            break;
-          } else {
-            imgList.push(imagePath);
-            index++;
-          }
-        } catch (error) {
-          console.error(`Error fetching image at path: ${imagePath}`, error);
-          break;
-        }
-      }
-    
-      if (mounted) {
-        setImages(imgList);
-        setLoading(false);
-      }
-    };
-
-    loadImages(selectedChapter);
-
-    return () => {
-      mounted = false;
-    };
-  }, [selectedChapter]);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
       // Left arrow key
-
       if (event.keyCode === 37 && currentImageIndex > 0) {
         setCurrentImageIndex((prevIndex) => prevIndex - 1);
       }
@@ -62,16 +26,12 @@ function App() {
         setCurrentImageIndex((prevIndex) => prevIndex + 1);
       }
     };
-
     window.addEventListener('keydown', handleKeyPress);
-
-    // Cleanup the event listener when the component is unmounted
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [images, currentImageIndex]);
+  }, [currentImageIndex]);
 
-  // Handles clicks for "Previous" and "Next" buttons
   const handlePreviousClick = () => {
     if (currentImageIndex > 0) {
       setCurrentImageIndex((prevIndex) => prevIndex - 1);
@@ -84,8 +44,60 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    // Reset on story change
+    setCurrentImageIndex(0);
+
+    const loadImages = async () => {
+      const currentstory = story || defaultNav;
+      let index = 1;
+      const imgList = [];
+
+      let imageExists = true;
+      while (imageExists) {
+        try {
+          const result = await fetchImage(currentstory, index);
+          imgList.push(...result);
+          index++;
+        } catch (error) {
+          console.error(`Error fetching image ${index} in ${story}`, error);
+          imageExists = false;
+        }
+        if (index >= MAX_IMAGES) {
+          imageExists = false;
+        }
+      }
+
+      setImages(imgList);
+      setLoading(false);
+    };
+
+    loadImages();
+  }, [story]);
+
+  const fetchImage = async (story, index) => {
+    if (!story) return [];
+
+    const imagePath = process.env.PUBLIC_URL + '/assets/' + story + '/' + index + '.png';
+    console.log("Image Path:", imagePath);
+
+    try {
+      const response = await fetch(imagePath);
+      const contentType = response.headers.get("Content-Type");
+
+      if (!response.ok || !contentType || !contentType.startsWith("image") || response.status === 404) {
+        console.log(`Failed to fetch image at path: ${imagePath}`);
+        return [];
+      } else {
+        return [imagePath];
+      }
+    } catch (error) {
+      console.error(`Error fetching image at path: ${imagePath}`, error);
+      return [];
+    }
+  };
   return (
-    <div className="App" key={selectedChapter}>
+    <div>
       {loading ? (
         <div className="spinner-wrapper">
           <div className="spinner"></div>
@@ -93,21 +105,36 @@ function App() {
       ) : (
         <>
           <h1 className="comic-title">Checkmate Productions</h1>
-          <Navbar setSelectedChapter={setSelectedChapter} />
-          <h2 className="comic-subtitle" key={selectedChapter}>{selectedChapter}</h2>
-          
-            <div className="prev-button-container" onClick={handlePreviousClick}></div>
-            <img
-              src={images[currentImageIndex]}
-              alt="Webcomic Page"
-              className="comic-image"
-            />
-            <br />
-            <div className="next-button-container" onClick={handleNextClick}></div>
-          
+          <Navbar />
+          <h2 className="comic-subtitle" key={story}>{story}</h2>
+          <div className="prev-button-container" onClick={handlePreviousClick}></div>
+          <img
+            src={images[currentImageIndex]}
+            alt="Webcomic Page"
+            className="comic-image"
+          />
+          <br />
+          <div className="next-button-container" onClick={handleNextClick}></div>
         </>
       )}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route
+            path="/:story"
+            element={
+              <DynamicRouteComponent />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,45 +1,58 @@
+body {
+  overflow: hidden;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner-wrapper {
-  position: absolute; 
+  position: absolute;
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
 }
 
 .spinner {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue (or any color you want) */
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: spin 2s linear infinite; 
+  animation: spin 2s linear infinite;
 }
 
-.comic-title, .comic-subtitle, .comic-image, .prev-button-container, .next-button-container, .nav-buttons-container {
-  opacity: 0; /* Hidden by default */
+.comic-title,
+.comic-subtitle,
+.comic-image,
+.prev-button-container,
+.next-button-container,
+.nav-buttons-container {
+  opacity: 0;
   animation-name: fadeIn;
   animation-timing-function: ease-in;
-  animation-duration: 1s; /* Change duration if needed */
-  animation-fill-mode: forwards; /* This ensures the animation's end values (from the 'to' keyframe) persist after the animation completes */
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .App {
   background-color: black;
-  height: 90vh;
-  overflow: hidden;
 }
 
 .comic-title {
@@ -48,59 +61,49 @@
   padding: 10px 0;
   font-size: 2em;
   min-height: 5vh;
-  animation-delay: 0.5s; /* Starts fading in after 0.5s */
-}
-
-.nav-buttons-container {
-  display: flex;
-  justify-content: center;
-  animation-delay: 0.5s; /* Starts fading in after 0.5s */
+  animation-delay: 0.3s;
 }
 
 .comic-subtitle {
-  display: flex; 
+  display: flex;
   justify-content: center;
   text-align: left;
   color: white;
   font-size: 1.2em;
   padding-right: 10px;
-  width: 100%; 
-  flex-shrink: 0; 
-  margin: 10;  /* This removes any default margins */
-  line-height: 1.1;  /* Adjust this to control the space around the text */
-  animation-delay: 1s; /* Starts fading in after 1s */
+  width: 100%;
+  flex-shrink: 0;
+  margin: 10;
+  line-height: 1.1;
+  animation-delay: 0.7s;
 }
 
 .comic-image {
-  max-width: 90%;
-  max-height: 80%;
+  max-height: 80vh;
   object-fit: contain;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;  /* Added for horizontal centering */
-  animation-delay: 1.5s; /* Starts fading in after 1.5s */
+  align-items: center;
+  animation-delay: 0.9s;
+}
+
+.prev-button-container,
+.next-button-container {
+  position: absolute;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  width: 40vw;
+  animation-delay: 0.9s;
+  z-index: 10;
 }
 
 .prev-button-container {
-  position: absolute;
-  top: 0;
   left: 0;
-  display: flex;
-  height: 100vh;
-  width: 40vw; 
-  animation-delay: 1.5s;
-  z-index: 10;
- }
+}
 
- .next-button-container {
-  position: absolute;
-  top: 0;
+.next-button-container {
   right: 0;
-  display: flex; 
-  height: 100vh;
-  width: 40vw; 
-  animation-delay: 1.5s;
-  z-index: 10;
- }
+}
