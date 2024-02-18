@@ -9,11 +9,10 @@ const defaultNav = storyList[0];
 
 function DynamicRouteComponent() {
   const location = useLocation();
-  const story = location.pathname.split('/')[1]; // Extract story from pathname
+  const story = location.pathname.split('/')[1] || defaultNav;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -49,7 +48,11 @@ function DynamicRouteComponent() {
     setCurrentImageIndex(0);
 
     const loadImages = async () => {
-      const currentstory = story || defaultNav;
+      console.log("story is:", story)
+      let currentstory = defaultNav;
+      if(storyList.includes(story)){
+        currentstory = story;
+      }
       let index = 1;
       const imgList = [];
 
@@ -123,11 +126,17 @@ function DynamicRouteComponent() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/webcomicreact/">
       <div className="App">
         <Routes>
           <Route
             path="/:story"
+            element={
+              <DynamicRouteComponent />
+            }
+          />
+          <Route
+            path="/"
             element={
               <DynamicRouteComponent />
             }

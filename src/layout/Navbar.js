@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from 'react-router-dom';
 
-import './Navbar.css'; 
+import './Navbar.css';
 
 export default function Navbar() {
   const navigate = useNavigate();
