@@ -1,0 +1,16 @@
+packages:
+  - .
+
+# Native modules that must run install scripts to compile bindings.
+# pnpm blocks dep build scripts by default (malicious-postinstall defense).
+allowBuilds:
+  core-js: false
+  core-js-pure: false
+
+# Supply-chain: dependency cooldown. External packages must be 7 days old before
+# they resolve — malicious npm releases are near-always caught within hours, so we
+# let the ecosystem find them first. @wolffm/* is EXEMPT: it's the cross-ecosystem
+# deploy path and must install immediately.
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - '@wolffm/*'
