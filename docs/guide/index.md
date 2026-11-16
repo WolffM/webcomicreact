@@ -24,6 +24,10 @@ React page. It has no server component: a `fetch` loop pulls numbered PNGs
 straight out of `public/assets/<story>/`, and the whole app is a handful of
 files built with Create React App.
 
+![The first page of the AI-Arena story arc, the default view when the app
+loads: an illustrated colosseum ruin beside a
+river](../../public/assets/AI-Arena/1.png)
+
 - [Features](features.md): the page viewer and the story switcher — what
   each does and its limits.
 - [Contributing](contributing.md): running it locally, the architecture,

@@ -20,23 +20,18 @@ On mount (and on every story switch) the app fetches `/assets/<story>/1.png`,
 There is no page counter, no "jump to page," and no state kept between
 visits — reloading always starts a story over at page 1.
 
-**Limits and a couple of rough edges found while reading the code (not fixed
-here):**
+**Limits:**
 
-- The loop that fetches pages (`src/App.js:59-76`) never stops early when a
-  page is missing — `fetchImage` (`src/App.js:81-101`) catches its own fetch
-  errors and returns an empty list instead of throwing, so the outer
-  `catch` that would set `imageExists = false` is effectively unreachable.
-  In practice every story load tries all 29 indices regardless of how many
-  pages the story actually has: the `Misc` story has 8 pages (`ls
+- Loading a story always tries all 29 possible page numbers, even once it
+  has already found the last real page. A short story shows this as extra
+  failed image requests: the `Misc` story has 8 pages (`ls
   public/assets/Misc | wc -l`, run 2026-11-15), so loading it fires 21
-  fetches for pages that don't exist.
-- The keyboard-navigation effect (`src/App.js:17-32`) reads `images` inside
-  `handleKeyPress` but its dependency array only lists `currentImageIndex`
-  (line 32). Right after a story switch, `images` has not been reset and
-  the effect has no reason to re-run, so the arrow keys briefly check the
-  *previous* story's page count until the first on-screen click forces the
-  effect (and its closure) to re-register with the current one.
+  fetches for pages that don't exist. [Contributing](contributing.md#known-issues)
+  has the cause.
+- Right after you switch stories, the arrow keys briefly use the previous
+  story's page count instead of the new one. They catch up as soon as you
+  click once on either on-screen zone. [Contributing](contributing.md#known-issues)
+  has the cause.
 
 ## Story switcher
 

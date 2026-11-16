@@ -82,6 +82,24 @@ checked 2026-11-15), and it has recorded zero runs ever (`gh run list
 [History](history.md#dormant-then-tooling-only) — without it ever having
 run once.
 
+## Known issues
+
+Found while reading the code; not fixed here.
+[Features](features.md#page-viewer) describes what each one looks like to
+someone using the app.
+
+- The page-fetch loop (`src/App.js:59-76`) never stops early when a page is
+  missing. `fetchImage` (`src/App.js:81-101`) catches its own fetch errors
+  and returns an empty list instead of throwing, so the outer `catch` that
+  would set `imageExists = false` never runs. Every story load tries all 29
+  indices regardless of how many pages exist.
+- The keyboard-navigation effect (`src/App.js:17-32`) reads `images` inside
+  `handleKeyPress`, but its dependency array only lists `currentImageIndex`
+  (line 32). Right after a story switch, `images` hasn't been reset yet, so
+  the effect has no reason to re-run. The arrow keys briefly check the
+  *previous* story's page count. The first on-screen click forces the
+  effect, and its closure, to re-register with the current story.
+
 ## Trivia
 
 The deploy workflow nobody has ever seen run still got a same-day fix and

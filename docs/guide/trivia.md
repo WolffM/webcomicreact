@@ -1,11 +1,11 @@
 # Trivia
 
-- **The live site is frozen at a single 2024 build.** `11b922d` ("update
+- **The live site is frozen at a single 2024 build**. `11b922d` ("update
   navs", 2024-02-17) is the last commit on `main` to touch anything under
-  `src/` or `public/` (`git log -1 -- src/ public/`, checked 2026-11-15),
-  and the `gh-pages` branch GitHub Pages actually serves hasn't moved since
-  that same day (`git log -1 origin/gh-pages`). Everything since — a
-  README edit, a package-manager migration, two CI tweaks — changed the
+  `src/` or `public/` (`git log -1 -- src/ public/`, checked 2026-11-15).
+  The `gh-pages` branch GitHub Pages actually serves hasn't moved since
+  that same day either (`git log -1 origin/gh-pages`). Everything since —
+  a README edit, a package-manager migration, two CI tweaks — changed the
   repo without changing the app anyone sees.
 
 - **The two stories used to be "Chapter 1" and "Chapter 2."** `dc4cf7c`
