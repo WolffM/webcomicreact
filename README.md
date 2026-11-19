@@ -1,5 +1,7 @@
 # Web Comic React
 
+**Guide:** [overview](docs/guide/index.md) · [features](docs/guide/features.md) · [contributing](docs/guide/contributing.md) · [history](docs/guide/history.md) · [trivia](docs/guide/trivia.md)
+
 A simple and customizable React app designed to host your webcomics.
 
 ## Live Demo
